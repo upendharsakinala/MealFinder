@@ -4,27 +4,17 @@ const random = document.getElementById("random");
 const mealsEl = document.getElementById("meals");
 const resultHeading = document.getElementsByClassName("result-heading");
 const single_mealEl = document.getElementById("single-meal");
-
-//SearchMeal from API
 function searchMeal(e) {
   e.preventDefault();
-
-  // Clear single Meal
   single_mealEl.innerHTML = "";
-
-  //get search Term
   const term = search.value;
-
-  //Check for empty
   if (term.trim()) {
     fetch(
       `https://www.themealdb.com/api/json/v1/1/search.php?s=${term}`
     )
       .then((res) => res.json())
       .then((data) => {
-        //resultHeading.innerHTML = `${term}`;
         if (data.meals === null) {
-          //resultHeading.innerHTML = `${term}`;
           mealsEl.innerHTML='NO RESULTS FOUND'
         } else {
           mealsEl.innerHTML = data.meals
@@ -41,14 +31,12 @@ function searchMeal(e) {
             .join("");
         }
       });
- //Clear Search Term
-    // search.value = "";
   } else {
     alert("please enter a search value");
   }
 }
 
-//Fetch Meal By Id
+
 function getMealById(mealID) {
   fetch(
     `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`
@@ -60,9 +48,8 @@ function getMealById(mealID) {
     });
 }
 
-//fetch Meal 
+
 function randomMeal(){
-    //Clear Meals and Heading
     mealsEl.innerHTML='';
     resultHeading.innerHTML='';
     fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
@@ -74,7 +61,6 @@ function randomMeal(){
 
 }
 
-//Add meal to DOM
 function addMealToDOM(meal){
   const ingredients = [];
   for (let i = 1; i <= 20; i++) {
@@ -105,10 +91,8 @@ function addMealToDOM(meal){
   </ul>
   </div>
   </div>
-  `
- }
+  `}
 
-//Event Listerner
 submit.addEventListener("submit", searchMeal);
 random.addEventListener('click',randomMeal);
 mealsEl.addEventListener("click", (e) => {
