@@ -100,7 +100,7 @@ mealsEl.addEventListener("click", (e) => {
     if (item.classList) {
       return item.classList.contains("meal-info");
     } else {
-      return false;
+      return false;+6
     }
   });
   if (mealInfo) {
